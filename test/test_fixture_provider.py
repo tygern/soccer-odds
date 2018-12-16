@@ -19,7 +19,7 @@ def test_upcoming_fixtures():
         ,
         Fixture(
             home_team=Team("Colorado Rapids"),
-            away_team=Team("Bournemouth"),
+            away_team=Team("Kittens"),
             probabilities=Probabilities(home=0.5, draw=0.25, away=0.25),
             start_time=1544967000),
     ]
@@ -82,7 +82,7 @@ class FakeResponse(object):
       "sport_nice": "EPL",
       "teams": [
         "Colorado Rapids",
-        "Bournemouth"
+        "Kittens"
       ],
       "commence_time": 1544967000,
       "home_team": "Colorado Rapids",
