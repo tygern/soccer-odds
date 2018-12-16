@@ -11,8 +11,17 @@ def test_upcoming_fixtures():
     assert fake_requests.request_url == "https://api.the-odds-api.com/v3/odds" \
                                         "?sport=soccer_epl&region=us&mkt=h2h&apiKey=some-api-key"
     assert fixtures == [
-        Fixture(Team("Chelsea"), Team("Swansea"), Probabilities(0.129154652, 0.658863257, 0.211982091), 1544967000),
-        Fixture(Team("Colorado Rapids"), Team("Bournemouth"), Probabilities(0.5, 0.25, 0.25), 1544967000),
+        Fixture(
+            home_team=Team("Chelsea"),
+            away_team=Team("Swansea"),
+            probabilities=Probabilities(home=0.658863257, draw=0.211982091, away=0.129154652),
+            start_time=1544967000)
+        ,
+        Fixture(
+            home_team=Team("Colorado Rapids"),
+            away_team=Team("Bournemouth"),
+            probabilities=Probabilities(home=0.5, draw=0.25, away=0.25),
+            start_time=1544967000),
     ]
 
 
