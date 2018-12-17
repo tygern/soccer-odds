@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List
 
-from fixtures.fixture import Fixture, Team, Probabilities
+from fixtures.fixture import Fixture, Team, Odds
 
 
 class FixtureProvider(object):
@@ -25,16 +25,14 @@ class FixtureProvider(object):
         return Fixture(
             home_team=Team(home_team_name),
             away_team=Team(away_team_name),
-            probabilities=self._calculate_probabilities(odds, home_team_index),
+            odds=self._calculate_odds(odds, home_team_index),
             start_time=fixture_dict["commence_time"]
         )
 
     @staticmethod
-    def _calculate_probabilities(odds: List[float], home_team_index: int) -> Probabilities:
-        harmonic_mean = 1 / sum([1 / o for o in odds])
-
-        return Probabilities(
-            home=round(harmonic_mean / odds[home_team_index], 9),
-            draw=round(harmonic_mean / odds[2], 9),
-            away=round(harmonic_mean / odds[1 - home_team_index], 9)
+    def _calculate_odds(odds: List[float], home_team_index: int) -> Odds:
+        return Odds(
+            home=odds[home_team_index],
+            draw=odds[2],
+            away=odds[1 - home_team_index]
         )

@@ -1,4 +1,4 @@
-from fixtures.fixture import Fixture, Team, Probabilities
+from fixtures.fixture import Fixture, Team, Odds
 from fixtures.fixture_provider import FixtureProvider
 
 
@@ -14,13 +14,13 @@ def test_upcoming_fixtures():
         Fixture(
             home_team=Team("Chelsea"),
             away_team=Team("Swansea"),
-            probabilities=Probabilities(home=0.658863257, draw=0.211982091, away=0.129154652),
+            odds=Odds(home=1.48, draw=4.6, away=7.55),
             start_time=1544967000)
         ,
         Fixture(
             home_team=Team("Colorado Rapids"),
             away_team=Team("Kittens"),
-            probabilities=Probabilities(home=0.5, draw=0.25, away=0.25),
+            odds=Odds(home=1.95, draw=3.9, away=3.9),
             start_time=1544967000),
     ]
 
