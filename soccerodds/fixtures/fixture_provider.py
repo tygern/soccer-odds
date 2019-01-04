@@ -1,7 +1,7 @@
 import json
 from typing import Dict, List
 
-from fixtures.fixture import Fixture, Team, Odds
+from soccerodds.fixtures.fixture import Fixture, Team, Odds
 
 
 class FixtureProvider(object):

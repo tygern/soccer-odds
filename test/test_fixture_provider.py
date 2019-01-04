@@ -1,5 +1,5 @@
-from fixtures.fixture import Fixture, Team, Odds
-from fixtures.fixture_provider import FixtureProvider
+from soccerodds.fixtures.fixture import Fixture, Team, Odds
+from soccerodds.fixtures.fixture_provider import FixtureProvider
 
 
 def test_upcoming_fixtures():

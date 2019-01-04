@@ -1,4 +1,4 @@
-from fixtures.fixture import Probabilities, Odds
+from soccerodds.fixtures.fixture import Probabilities, Odds
 
 
 def test_to_probabilities():
