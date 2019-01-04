@@ -25,12 +25,12 @@ class FixtureProvider(object):
         return Fixture(
             home_team=Team(home_team_name),
             away_team=Team(away_team_name),
-            odds=self._calculate_odds(odds, home_team_index),
+            odds=self.__calculate_odds(odds, home_team_index),
             start_time=fixture_dict["commence_time"]
         )
 
     @staticmethod
-    def _calculate_odds(odds: List[float], home_team_index: int) -> Odds:
+    def __calculate_odds(odds: List[float], home_team_index: int) -> Odds:
         return Odds(
             home=odds[home_team_index],
             draw=odds[2],
