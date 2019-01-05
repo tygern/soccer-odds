@@ -5,7 +5,7 @@ from soccerodds.fixtures.fixture import Fixture, Team, Odds
 
 
 class FixtureProvider(object):
-    def __init__(self, api_key: str, requests):
+    def __init__(self, api_key: str, requests) -> None:
         self._requests = requests
         self._api_key = api_key
         self._request_url = "https://api.the-odds-api.com/v3/odds?sport=soccer_epl&region=us&mkt=h2h&apiKey="
