@@ -19,9 +19,9 @@ def evaluate(engine: PredictionEngine) -> Fraction:
                     home_team=row[1],
                     away_team=row[2],
                     odds=Odds(
-                        home=row[4],
-                        draw=row[5],
-                        away=row[6]
+                        home=float(row[4]),
+                        draw=float(row[5]),
+                        away=float(row[6])
                     ),
                     start_time=int(datetime.strptime(row[0], "%d/%m/%Y").timestamp())
                 ),

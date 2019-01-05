@@ -1,7 +1,7 @@
 from fractions import Fraction
 
 from soccerodds.fixtures.fixture import Odds, Team, Fixture
-from soccerodds.predictions.home_prediction_engine import HomePredictionEngine
+from soccerodds.engines.home_prediction_engine import HomePredictionEngine
 from soccerodds.predictions.prediction_evaluator import Result, Match, PredictionEvaluator
 
 
