@@ -35,7 +35,7 @@ class SimulatorEngine(PredictionEngine):
         self.__goal_rates = goal_rates
 
     def predict(self, fixture: Fixture) -> Probabilities:
-        results = [self.__simulate_match(fixture) for _ in range(1000)]
+        results = [self.__simulate(fixture) for _ in range(1000)]
 
         return Probabilities(
             home=results.count(Result.HOME) / 1000,
@@ -43,7 +43,7 @@ class SimulatorEngine(PredictionEngine):
             draw=results.count(Result.DRAW) / 1000
         )
 
-    def __simulate_match(self, fixture: Fixture) -> Result:
+    def __simulate(self, fixture: Fixture) -> Result:
         home_goal_rate = self.__goal_rates[fixture.home_team]
         away_goal_rate = self.__goal_rates[fixture.away_team]
 
