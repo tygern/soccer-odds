@@ -3,7 +3,7 @@ from datetime import datetime
 from fractions import Fraction
 from typing import List
 
-from soccerodds.fixtures.fixture import Fixture, Odds
+from soccerodds.fixtures.fixture import Fixture, Odds, Team
 from soccerodds.predictions.prediction_engine import PredictionEngine
 from soccerodds.predictions.prediction_evaluator import PredictionEvaluator, Match, result_from_string
 
@@ -21,8 +21,8 @@ class CsvMatchPredictionEvaluator(object):
             for row in csv_reader:
                 matches.append(Match(
                     fixture=Fixture(
-                        home_team=row[1],
-                        away_team=row[2],
+                        home_team=Team(row[1]),
+                        away_team=Team(row[2]),
                         odds=Odds(
                             home=float(row[4]),
                             draw=float(row[5]),

@@ -1,19 +1,19 @@
 from dataclasses import dataclass
 
 
-@dataclass
+@dataclass(frozen=True)
 class Team(object):
     name: str
 
 
-@dataclass
+@dataclass(frozen=True)
 class Probabilities(object):
     home: float
     draw: float
     away: float
 
 
-@dataclass
+@dataclass(frozen=True)
 class Odds(object):
     home: float
     draw: float
@@ -29,7 +29,7 @@ class Odds(object):
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class Fixture(object):
     home_team: Team
     away_team: Team
