@@ -1,17 +1,8 @@
 from fractions import Fraction
 
-from soccerodds.fixtures.fixture import Odds, Team, Fixture, Probabilities
-from soccerodds.predictions.prediction_engine import PredictionEngine
+from soccerodds.fixtures.fixture import Odds, Team, Fixture
+from soccerodds.predictions.home_prediction_engine import HomePredictionEngine
 from soccerodds.predictions.prediction_evaluator import Result, Match, PredictionEvaluator
-
-
-class HomePredictionEngine(PredictionEngine):
-    def predict(self, fixture: Fixture) -> Probabilities:
-        return Probabilities(
-            home=1,
-            away=0,
-            draw=0
-        )
 
 
 def test_evaluate():

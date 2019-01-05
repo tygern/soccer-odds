@@ -13,6 +13,10 @@ class Result(Enum):
     DRAW = "draw"
 
 
+def result_from_string(s: str) -> Result:
+    return [r for r in Result if r.value == s][0]
+
+
 @dataclass
 class Match(object):
     fixture: Fixture
@@ -24,14 +28,14 @@ class PredictionEvaluator(object):
         self.engine = engine
 
     def evaluate(self, matches: List[Match]) -> Fraction:
-        correct_predictions = sum([self.__is_correct(m) for m in matches])
+        correct_predictions = sum([self.is_correct(m) for m in matches])
 
         return Fraction(correct_predictions, len(matches))
 
-    def __is_correct(self, match: Match) -> bool:
-        return self.__predicted_result(match.fixture) == match.result
+    def is_correct(self, match: Match) -> bool:
+        return self.predicted_result(match.fixture) == match.result
 
-    def __predicted_result(self, f: Fixture) -> Result:
+    def predicted_result(self, f: Fixture) -> Result:
         p = self.engine.predict(f)
 
         if p.home >= p.away and p.home >= p.draw:
