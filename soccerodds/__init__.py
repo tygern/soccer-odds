@@ -1,2 +1,2 @@
-from soccerodds.predictions.epl_evaluator import evaluate
+from soccerodds.predictions.csv_match_prediction_evaluator import CsvMatchPredictionEvaluator
 from soccerodds.predictions.prediction_engine import PredictionEngine
