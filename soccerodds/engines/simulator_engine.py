@@ -3,7 +3,7 @@ from typing import Dict
 
 from soccerodds import PredictionEngine
 from soccerodds.fixtures.fixture import Fixture, Probabilities, Team
-from soccerodds.predictions.prediction_evaluator import Result
+from soccerodds.predictions.prediction_evaluator import Outcome
 
 # Based on last year's results
 naive_goal_rates = {
@@ -38,12 +38,12 @@ class SimulatorEngine(PredictionEngine):
         results = [self.__simulate(fixture) for _ in range(1000)]
 
         return Probabilities(
-            home=results.count(Result.HOME) / 1000,
-            away=results.count(Result.AWAY) / 1000,
-            draw=results.count(Result.DRAW) / 1000
+            home=results.count(Outcome.HOME) / 1000,
+            away=results.count(Outcome.AWAY) / 1000,
+            draw=results.count(Outcome.DRAW) / 1000
         )
 
-    def __simulate(self, fixture: Fixture) -> Result:
+    def __simulate(self, fixture: Fixture) -> Outcome:
         home_goal_rate = self.__goal_rates[fixture.home_team]
         away_goal_rate = self.__goal_rates[fixture.away_team]
 
@@ -57,8 +57,8 @@ class SimulatorEngine(PredictionEngine):
                 away_score += 1
 
         if home_score > away_score:
-            return Result.HOME
+            return Outcome.HOME
         elif away_score > home_score:
-            return Result.AWAY
+            return Outcome.AWAY
         else:
-            return Result.DRAW
+            return Outcome.DRAW

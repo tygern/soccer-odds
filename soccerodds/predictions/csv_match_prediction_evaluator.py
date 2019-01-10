@@ -5,7 +5,7 @@ from typing import List
 
 from soccerodds.fixtures.fixture import Fixture, Odds, Team
 from soccerodds.predictions.prediction_engine import PredictionEngine
-from soccerodds.predictions.prediction_evaluator import PredictionEvaluator, Match, result_from_string
+from soccerodds.predictions.prediction_evaluator import PredictionEvaluator, Result, result_from_string
 
 
 class CsvMatchPredictionEvaluator(object):
@@ -14,12 +14,12 @@ class CsvMatchPredictionEvaluator(object):
         self.filename = filename
 
     def evaluate(self, engine: PredictionEngine) -> Fraction:
-        matches: List[Match] = []
+        results: List[Result] = []
 
         with open(self.filename) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             for row in csv_reader:
-                matches.append(Match(
+                results.append(Result(
                     fixture=Fixture(
                         home_team=Team(row[1]),
                         away_team=Team(row[2]),
@@ -30,8 +30,8 @@ class CsvMatchPredictionEvaluator(object):
                         ),
                         start_time=int(datetime.strptime(row[0], "%d/%m/%Y").timestamp())
                     ),
-                    result=result_from_string(row[3])
+                    outcome=result_from_string(row[3])
                 )
                 )
 
-        return PredictionEvaluator(engine).evaluate(matches)
+        return PredictionEvaluator(engine).evaluate(results)

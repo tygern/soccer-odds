@@ -7,40 +7,40 @@ from soccerodds.fixtures.fixture import Fixture
 from soccerodds.predictions.prediction_engine import PredictionEngine
 
 
-class Result(Enum):
+class Outcome(Enum):
     HOME = "home"
     AWAY = "away"
     DRAW = "draw"
 
 
-def result_from_string(s: str) -> Result:
-    return [r for r in Result if r.value == s][0]
+def result_from_string(s: str) -> Outcome:
+    return [o for o in Outcome if o.value == s][0]
 
 
 @dataclass
-class Match(object):
+class Result(object):
     fixture: Fixture
-    result: Result
+    outcome: Outcome
 
 
 class PredictionEvaluator(object):
     def __init__(self, engine: PredictionEngine) -> None:
         self.engine = engine
 
-    def evaluate(self, matches: List[Match]) -> Fraction:
+    def evaluate(self, matches: List[Result]) -> Fraction:
         correct_predictions = sum([self.is_correct(m) for m in matches])
 
         return Fraction(correct_predictions, len(matches))
 
-    def is_correct(self, match: Match) -> bool:
-        return self.predicted_result(match.fixture) == match.result
+    def is_correct(self, result: Result) -> bool:
+        return self.predicted_outcome(result.fixture) == result.outcome
 
-    def predicted_result(self, f: Fixture) -> Result:
+    def predicted_outcome(self, f: Fixture) -> Outcome:
         p = self.engine.predict(f)
 
         if p.home >= p.away and p.home >= p.draw:
-            return Result.HOME
+            return Outcome.HOME
         elif p.draw > p.away:
-            return Result.DRAW
+            return Outcome.DRAW
         else:
-            return Result.AWAY
+            return Outcome.AWAY
