@@ -42,7 +42,7 @@ def test_predict_closer():
     ))
 
     assert .2 < result.home < .3
-    assert .1 < result.draw < .2
+    assert .1 < result.draw < .25
     assert .55 < result.away < .65
 
     assert .95 < result.home + result.draw + result.away < 1.05
